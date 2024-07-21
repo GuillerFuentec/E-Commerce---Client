@@ -1,5 +1,5 @@
 @import "./index.scss";
-@import "./semanti-ui/index.scss";
+@import "./semantic-ui/index.scss";
 
 * {
   color: $text-primary;
@@ -7,7 +7,7 @@
 
 body {
   margin: 0;
-  background-color: $backgroun-primary;
+  background-color: $background-primary;
 }
 
 h1,
