@@ -1,14 +1,25 @@
 import { Form } from "semantic-ui-react";
+import { useRouter } from "next/router";
 import { useFormik } from "formik";
+import { Auth } from "@/api";
 import { validationSchema, initialValues } from "./RegisterForm.form";
 
+const authCtrl = new Auth();
+
 export function RegisterForm() {
+  const rout = useRouter();
   const formik = useFormik({
     initialValues: initialValues(),
     validationSchema: validationSchema(),
     validateOnChange: false,
-    onSubmit: () => {
-      console.log("succes");
+    onSubmit: async (formValue) => {
+      try {
+        console.log("Form values being submitted:", formValue);
+        await authCtrl.register(formValue);
+        rout.push("/join/sign-in");
+      } catch (error) {
+        console.log("Error during form submission:", error);
+      }
     },
   });
 
@@ -35,7 +46,7 @@ export function RegisterForm() {
       <Form.Group widths={"equal"}>
         <Form.Input
           name="name"
-          placeholder="first and last name"
+          placeholder="full name"
           type="text"
           value={formik.values.name}
           onChange={formik.handleChange}
@@ -45,12 +56,12 @@ export function RegisterForm() {
           name="password"
           placeholder="password"
           type="password"
-          value={formik.values.passwaord}
+          value={formik.values.password}
           onChange={formik.handleChange}
-          error={formik.errors.passwaord}
+          error={formik.errors.password}
         />
       </Form.Group>
-      <Form.Button type="submit" fluid loading={formik.isSubmitting} >
+      <Form.Button type="submit" fluid loading={formik.isSubmitting}>
         Register
       </Form.Button>
     </Form>
