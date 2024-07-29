@@ -4,12 +4,20 @@ import { useAuth } from "@/hooks";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import styles from "./join.module.scss";
+import { useEffect } from "react";
 
 export function Joinlayout({ children }) {
   const { user } = useAuth();
   const rout = useRouter();
+ 
+  useEffect(() => {
+    if (user) {
+      rout.push("/");
+    }
+  }, [user, rout]);
 
-  if (user) return rout.push("/")
+  if (user) return null;
+
     return (
       <div className={styles.container}>
         <div className={styles.topBar}>
