@@ -5,7 +5,7 @@ import { useAuth } from "@/hooks";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
-  const {user, logout} = useAuth();
+  const { user, logout } = useAuth();
   console.log(user);
   return (
     <main>
@@ -13,8 +13,13 @@ export default function Home() {
         <h1>Games Shop</h1>
       </div>
       {user ? (
-        <div>Hola, {""}</div>
-      ) : (<div></div>)}
+        <div>
+          <h1>Hola, {user.username}</h1>
+          <Button onClick={logout} primary>Logout</Button>
+        </div>
+      ) : (
+        <div><a href="/join/sign-in">Login</a></div>
+      )}
     </main>
   );
 }
