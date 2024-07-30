@@ -55,6 +55,13 @@ export function AuthProvider(props) {
     setUser(null);
   };
 
+  const updateUser = (key, value) =>{
+    setUser({
+      ...User,
+      [key]: value,
+    })
+  }
+
   const data = {
     accesToken: token,
     user,
