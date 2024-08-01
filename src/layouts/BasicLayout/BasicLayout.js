@@ -1,5 +1,5 @@
 import { Container } from "semantic-ui-react";
-import { TopBar } from "@/components/Layout";
+import { TopBar, Footer } from "@/components/Layout";
 import classNames from "classnames";
 import styles from "./BasicLayout.module.scss";
 
@@ -19,6 +19,7 @@ export function BasicLayout(props) {
           {isContainer ? <Container>{children}</Container> : children}
         </div>
       </Container>
+      <Footer/>
     </>
   );
 }
