@@ -1,0 +1,29 @@
+@import "~/src/scss/index.scss";
+
+.platform {
+    position: relative;
+    background-color: $background-quarternary_blur;
+    backdrop-filter: blur(20px);
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    padding: 0px 50px 0px 20px;
+    border-radius: 100px 0 0 100px;
+
+    >a {
+        display: flex;
+        align-items: center;
+        padding: 20px 15px;
+        text-decoration: none;
+
+        &:hover {
+            opacity: 0.6;
+        }
+    }
+
+    img{ 
+        filter: brightness(0) invert(1);
+        height: 16px;
+        padding-right: 10px;
+    }
+}
