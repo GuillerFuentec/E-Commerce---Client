@@ -2,7 +2,7 @@
 
 .platform {
   position: relative;
-  background-color: $background-quaternary;
+  background-color: $background-quarternary_blur;
   backdrop-filter: blur(20px);
   display: flex;
   justify-content: flex-end;
@@ -72,7 +72,7 @@
     overflow: hidden;
     border-radius: 100px;
 
-    >input {
+    > input {
       background-color: $primary !important;
       border: 0 !important;
       color: $text-primary !important;
