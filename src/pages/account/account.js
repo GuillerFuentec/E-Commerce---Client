@@ -2,7 +2,7 @@ import { useAuth } from "@/hooks";
 import { useRouter } from "next/router";
 import { Tab } from "semantic-ui-react";
 import { BasicLayout } from "@/layouts";
-import { Info, Setting } from "@/components/Account";
+import { Info, Setting, Address } from "@/components/Account";
 import { Separator } from "@/components/Shared";
 import styles from "./account.module.scss";
 
@@ -30,12 +30,13 @@ export default function AccountPage() {
       menuItem: "Address",
       render: () => (
         <Tab.Pane attached={false}>
-          <p>Addresess...</p>
+          <Address.AddAddress />
+          <Separator height={80} />
         </Tab.Pane>
       ),
     },
     {
-      menuItem: {key: 20, icon: "settings", content: "Setting" },
+      menuItem: { key: 20, icon: "settings", content: "Setting" },
       render: () => (
         <Tab.Pane attached={false}>
           <Setting.ChangeNameForm />
