@@ -8,6 +8,7 @@ export const ENV = {
         },
         USER_ME: 'users/me',
         PLATFORM: 'platforms',
+        USER: "users",
     },
     TOKEN: "token",
 }; 

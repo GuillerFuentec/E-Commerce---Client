@@ -9,8 +9,8 @@ export const AuthContext = createContext();
 export function AuthProvider(props) {
   const { children } = props;
 
-  const [user, setUser] = useState(null);
-  const [token, setToken] = useState(null);
+  const [user, setUser] = useState("");
+  const [token, setToken] = useState("");
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -67,7 +67,7 @@ export function AuthProvider(props) {
     user,
     login,
     logout,
-    updateUser: null,
+    updateUser,
   };
 
   if (loading) return null;

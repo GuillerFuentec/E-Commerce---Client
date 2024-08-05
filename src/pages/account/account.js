@@ -1,9 +1,14 @@
+import { useAuth } from "@/hooks";
+import { useRouter } from "next/router";
 import { Tab } from "semantic-ui-react";
 import { BasicLayout } from "@/layouts";
-import { Info } from "@/components/Account";
+import { Info, Setting } from "@/components/Account";
+import { Separator } from "@/components/Shared";
 import styles from "./account.module.scss";
 
 export default function AccountPage() {
+  const router = useRouter();
+  const { user, logout } = useAuth();
   const panes = [
     {
       menuItem: "Purchases",
@@ -30,14 +35,32 @@ export default function AccountPage() {
       ),
     },
     {
-      menuItem: "Setting",
+      menuItem: {key: 20, icon: "settings", content: "Setting" },
       render: () => (
         <Tab.Pane attached={false}>
-          <p>Setting...</p>
+          <Setting.ChangeNameForm />
+          <div className={styles.containerForm}>
+            <Setting.ChangeEmailForm />
+            <Setting.ChangePasswordForm />
+          </div>
+          <Separator height={80} />
         </Tab.Pane>
       ),
     },
+    {
+      menuItem: {
+        key: 21,
+        icon: "log out",
+        content: "",
+        onClick: logout,
+      },
+    },
   ];
+
+  if (!user) {
+    router.push("/");
+    return null;
+  }
 
   return (
     <BasicLayout isContainer relative>
@@ -45,8 +68,8 @@ export default function AccountPage() {
 
       <Tab
         menu={{ secondary: true, pointing: true }}
-        panes={panes }
-        classNames={styles.tabs}
+        panes={panes}
+        className={styles.tabs}
       />
     </BasicLayout>
   );
