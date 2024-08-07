@@ -25,8 +25,12 @@ export function Account() {
         {total > 0 && <Label circular>{total}</Label>}
       </Button>
 
-      <Button icon className={classNames({ [styles.user]: user })}>
-        <Icon name="user outline" onClick={user ? goToAccount : goToLogin}/>
+      <Button
+        icon
+        className={classNames({ [styles.user]: user })}
+        onClick={user ? goToAccount : goToLogin}
+      >
+        <Icon name="user outline" />
       </Button>
     </div>
   );

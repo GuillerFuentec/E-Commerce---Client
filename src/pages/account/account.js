@@ -31,6 +31,7 @@ export default function AccountPage() {
       render: () => (
         <Tab.Pane attached={false}>
           <Address.AddAddress />
+          <Address.ListAddress />
           <Separator height={80} />
         </Tab.Pane>
       ),
