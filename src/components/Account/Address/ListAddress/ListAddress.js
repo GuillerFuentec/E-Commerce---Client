@@ -8,7 +8,8 @@ import { AddAddress } from "../AddAddress";
 
 const addressCtrl = new AddressCtrl();
 
-export function ListAddress() {
+export function ListAddress(props) {
+  const {reload, onReload} = props
   const [addresses, setAddresses] = useState(null);
   const { user } = useAuth();
 
@@ -22,7 +23,7 @@ export function ListAddress() {
         throw error;
       }
     })();
-  }, []);
+  }, [reload]);
 
   if (!addresses) return null;
 
@@ -33,6 +34,7 @@ export function ListAddress() {
           key={address.id}
           addressID={address.id}
           address={address.attributes}
+          onReload={onReload}
         />
       ))}
     </div>

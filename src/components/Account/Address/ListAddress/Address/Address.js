@@ -1,8 +1,29 @@
+import { useState } from "react";
+import { Address as AddressCtrl } from "@/api";
+import { BasicModal, Confirm } from "@/components/Shared";
+import { AddressForm } from "../../AddressForm";
 import { Button, Icon } from "semantic-ui-react";
 import styles from "./Address.module.scss";
 
+const addresCtrl = new AddressCtrl();
+
 export function Address(props) {
-  const { addressID, address } = props;
+  const [showEdit, setShowEdit] = useState(false);
+  const { addressID, address, onReload } = props;
+  const [showConfirm, setShowConfirm] = useState(false);
+
+  const openCloseEdit = () => setShowEdit((prevState) => !prevState);
+  const openCloseConfirm = () => setShowConfirm((prevState) => !prevState);
+
+  const onDelete = async () => {
+    try {
+      await addresCtrl.deleteAddress(addressID);
+      onReload();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <>
       <div className={styles.address}>
@@ -14,14 +35,29 @@ export function Address(props) {
           </p>
         </div>
         <div className={styles.actions}>
-          <Button primary icon>
+          <Button primary icon onClick={openCloseEdit}>
             <Icon name="pencil" />
           </Button>
-          <Button primary icon>
+          <Button primary icon onClick={openCloseConfirm}>
             <Icon name="delete" />
           </Button>
         </div>
       </div>
+
+      <Confirm
+        open={showConfirm}
+        onCancel={openCloseConfirm}
+        onConfirm={onDelete}
+        content="Are you sure wish delete this address?"
+      />
+      <BasicModal show={showEdit} onClose={openCloseEdit} title="Edit Address">
+        <AddressForm
+          onClose={openCloseEdit}
+          onReload={onReload}
+          addressID={addressID}
+          address={address}
+        />
+      </BasicModal>
     </>
   );
 }

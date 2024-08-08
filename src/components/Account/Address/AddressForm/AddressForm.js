@@ -8,16 +8,26 @@ const addressCtrl = new Address();
 
 export function AddressForm(props) {
   const { user } = useAuth();
-  const { onClose } = props;
+  const { onClose, onReload, address, addressID } = props;
+
   const formik = useFormik({
-    initialValues,
+    initialValues: initialValues(address),
     validationSchema,
     validateOnChange: false,
     onSubmit: async (formValues) => {
       try {
-        await addressCtrl.createAddress(formValues, user.id);
-        formik.handleReset()
-        onClose();
+        if (addressID) {
+          console.log("Update Address");
+          await addressCtrl.updateAddress(addressID, formValues);
+          formik.resetForm;
+          onReload();
+          onClose();
+        } else {
+          await addressCtrl.createAddress(formValues, user.id);
+          formik.resetForm;
+          onReload();
+          onClose();
+        }
       } catch (error) {
         console.error(error);
       }

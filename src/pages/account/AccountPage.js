@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useAuth } from "@/hooks";
 import { useRouter } from "next/router";
 import { Tab } from "semantic-ui-react";
@@ -9,6 +10,15 @@ import styles from "./account.module.scss";
 export default function AccountPage() {
   const router = useRouter();
   const { user, logout } = useAuth();
+  const [reload, setReload] = useState(false);
+
+  const onReload = () => setReload((prevState) => !prevState);
+
+  if (!user) {
+    router.push("/");
+    return null;
+  }
+
   const panes = [
     {
       menuItem: "Purchases",
@@ -30,8 +40,8 @@ export default function AccountPage() {
       menuItem: "Address",
       render: () => (
         <Tab.Pane attached={false}>
-          <Address.AddAddress />
-          <Address.ListAddress />
+          <Address.AddAddress onReload={onReload} />
+          <Address.ListAddress onReload={onReload} reload={reload} />
           <Separator height={80} />
         </Tab.Pane>
       ),
@@ -58,11 +68,6 @@ export default function AccountPage() {
       },
     },
   ];
-
-  if (!user) {
-    router.push("/");
-    return null;
-  }
 
   return (
     <BasicLayout isContainer relative>

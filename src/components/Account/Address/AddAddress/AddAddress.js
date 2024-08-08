@@ -4,7 +4,8 @@ import { AddressForm } from "../AddressForm";
 import { useState } from "react";
 import styles from "./AddAddress.module.scss";
 
-export function AddAddress() {
+export function AddAddress(props) {
+  const {onReload} = props
   const [show, setShow] = useState(false);
 
   const openCLose = () => setShow((prevState) => !prevState);
@@ -19,7 +20,7 @@ export function AddAddress() {
         Create
       </Button>
       <BasicModal show={show} onClose={openCLose} title='New Address' >
-        <AddressForm onClose={openCLose}/>
+        <AddressForm onReload={onReload} onClose={openCLose}/>
       </BasicModal>
     </>
   );

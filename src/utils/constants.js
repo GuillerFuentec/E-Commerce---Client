@@ -10,6 +10,7 @@ export const ENV = {
         PLATFORM: 'platforms',
         USER: "users",
         ADDRESS: "addresses",
+        GAME: "games",
     },
     TOKEN: "token",
 }; 
