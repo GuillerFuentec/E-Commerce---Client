@@ -1,0 +1,12 @@
+@import "~/src/scss/index.scss";
+
+.labelDiscount {
+    font-weight: 700;
+    background-color: $primary;
+    color: $text-primary;
+    position: absolute;
+    border-radius: 8px 0 0 8px;
+    padding: 3px 5px 1px 4px;
+    z-index: 2;
+    font-size: 13px;
+}
