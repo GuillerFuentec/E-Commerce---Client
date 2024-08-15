@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import { Game } from "@/api";
+import { GamesGrid } from "@/components/Shared";
 
 const gameCtrl = new Game();
-const limit = 2;
-const platformID = null;
 
-export function LastestGames() {
-  const [game, setGame] = useState(null);
+export function LastestGames(props) {
+  const { title, limit = 9, platformID = null } = props;
+  const [games, setGames] = useState(null);
 
   useEffect(() => {
     (async () => {
@@ -15,15 +15,19 @@ export function LastestGames() {
           limit,
           platformID,
         });
-        console.log(response.data);
-        
+        setGames(response.data);
       } catch (error) {
         console.error(error);
       }
     })();
   }, []);
 
-  if (!game) return null
+  if (!games) return null;
 
-  return <div>LastestGames</div>;
+  return (
+    <div>
+      <h2>{title}</h2>
+      <GamesGrid games={games} />
+    </div>
+  );
 }
