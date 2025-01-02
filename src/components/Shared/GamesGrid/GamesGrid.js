@@ -6,8 +6,7 @@ import { map } from "lodash";
 
 export function GamesGrid(props) {
   const { games } = props;
-  console.log(games);
-
+  
   return (
     <div className={styles.gridGames}>
       {map(games, (game) => (
