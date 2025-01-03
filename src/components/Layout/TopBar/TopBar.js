@@ -6,6 +6,7 @@ import styles from "./TopBar.module.scss";
 
 export function TopBar(props) {
   const { isOpenSearch } = props;
+
   return (
     <div className={styles.topBar}>
       <div className={styles.left}>
@@ -14,7 +15,7 @@ export function TopBar(props) {
         </Link>
       </div>
       <div className={styles.center}>
-        <Menu />
+        <Menu isOpenSearch={isOpenSearch} />
       </div>
       <div className={styles.right}>
         <Account />
