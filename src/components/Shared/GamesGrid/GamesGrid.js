@@ -14,25 +14,25 @@ export function GamesGrid(props) {
       {map(games, (game) => (
         <Link
           key={game.id}
-          href={`/${game.attributes.slug}`}
+          href={`/${game.slug}`}
           className={styles.game}
         >
           <div>
             <img
-              src={`${ENV.SERVER_HOST}${game.attributes.cover.data[0].attributes.url}`}
+              src={`${ENV.SERVER_HOST}${game.url}`}
             />
-            {game.attributes.discount > 0 && (
+            {game.discount > 0 && (
               <Label.Discount className={styles.discount}>
-                {`-${game.attributes.discount}%`}
+                {`-${game.discount}%`}
               </Label.Discount>
             )}
           </div>
           <div>
-            <span>{game.attributes.title}</span>
+            <span>{game.title}</span>
             <span className={styles.price}>
               {`$ ${fn.calcDiscountPrice(
-                game.attributes.discount,
-                game.attributes.price
+                game.discount,
+                game.price
               )}`}
             </span>
           </div>
