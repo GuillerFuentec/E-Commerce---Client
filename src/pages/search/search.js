@@ -12,6 +12,8 @@ import {
 export default function SearchPage(props) {
   const { games, pagination, searchText } = props;
   const hasResult = size(games) > 0;
+  console.log(games);
+  
 
   useEffect(() => {
     document.getElementById("search-games").focus();

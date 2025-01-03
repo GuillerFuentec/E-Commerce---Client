@@ -6,34 +6,27 @@ import { map } from "lodash";
 
 export function GamesGrid(props) {
   const { games } = props;
-  console.log(games);
-  
-  
+
   return (
     <div className={styles.gridGames}>
       {map(games, (game) => (
         <Link
           key={game.id}
-          href={`/${game.slug}`}
+          href={`/${game.attributes.slug}`}
           className={styles.game}
         >
           <div>
-            <img
-              src={`${ENV.SERVER_HOST}${game.url}`}
-            />
-            {game.discount > 0 && (
+            <img src={`${ENV.SERVER_HOST}${game.attributes.cover.data.attributes.url}`} />
+            {game.attributes.discount > 0 && (
               <Label.Discount className={styles.discount}>
-                {`-${game.discount}%`}
+                {`-${game.attributes.discount}%`}
               </Label.Discount>
             )}
           </div>
           <div>
-            <span>{game.title}</span>
+            <span>{game.attributes.title}</span>
             <span className={styles.price}>
-              {`$ ${fn.calcDiscountPrice(
-                game.discount,
-                game.price
-              )}`}
+              {`$ ${fn.calcDiscountPrice(game.attributes.discount, game.attributes.price)}`}
             </span>
           </div>
         </Link>

@@ -16,7 +16,7 @@ export default function HomePage() {
       {/* SEO */}
       <BasicLayout>
         {/* HERO Section */}
-        <Home.BannerLastGamePublished></Home.BannerLastGamePublished>
+        <Home.BannerLastGamePublished />
         <Separator height={100} />
         <Container>
           <Home.LastestGames title="Latest Drops" />
@@ -25,7 +25,7 @@ export default function HomePage() {
         <BarTrust />
         <Separator height={100} />
         <Container>
-        {/* Plasytation Section */}
+          {/* Plasytation Section */}
           <Home.LastestGames
             title="PLaystation"
             platformID={platformID.playstation}
