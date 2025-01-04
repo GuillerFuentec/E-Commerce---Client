@@ -11,9 +11,13 @@ import {
 
 export default function SearchPage(props) {
   const { games, pagination, searchText } = props;
+<<<<<<< HEAD
   const hasResult = size(games) > 0;
   console.log(games);
   
+=======
+  const hasResult = size(games.data) > 0;
+>>>>>>> 14a6c2b
 
   useEffect(() => {
     document.getElementById("search-games").focus();
@@ -29,13 +33,19 @@ export default function SearchPage(props) {
           <h2>Search: {searchText}</h2>
           {hasResult ? (
             <>
-              <GamesGrid games={games} />
+              <GamesGrid games={games.data} />
+              <Separator height={30} />
+              <Pagination
+                currentPage={pagination.page}
+                totalPage={pagination.pageCount}
+              />
             </>
           ) : (
             <>
-              <NoResult text="No results was founded" />
+              <NoResult text={"No result was founded"} />
             </>
           )}
+              <Separator height={100} />
         </Container>
       </BasicLayout>
     </>

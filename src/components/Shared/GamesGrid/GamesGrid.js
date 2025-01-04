@@ -5,8 +5,13 @@ import { Label } from "../Label";
 import { map } from "lodash";
 
 export function GamesGrid(props) {
+<<<<<<< HEAD
   const { games } = props;
 
+=======
+  const { games } = props;  
+  
+>>>>>>> 14a6c2b
   return (
     <div className={styles.gridGames}>
       {map(games, (game) => (
