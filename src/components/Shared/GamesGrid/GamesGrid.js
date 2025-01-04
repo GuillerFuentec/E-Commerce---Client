@@ -5,9 +5,7 @@ import { Label } from "../Label";
 import { map } from "lodash";
 
 export function GamesGrid(props) {
-  const { games } = props;
-  console.log(games);
-  
+  const { games } = props;  
   
   return (
     <div className={styles.gridGames}>
