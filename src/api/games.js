@@ -77,4 +77,23 @@ export class Game {
       throw error;
     }
   }
+
+  async getGameBySlug(slug) {
+    try {
+      const filter = `filters[slug][$eq]=${slug}`;
+      const populateWallpaper = `populate[0]=wallpaper&populate[1]=cover&populate[2]=screenshots&populate[3]=platform`;
+      const populatePlatform = `populate[4]=platform.icon`;
+      const populates =`${populateWallpaper}&${populatePlatform}`;
+
+      const url = `${ENV.API_URL}/${ENV.ENDPOINTS.GAME}?${filter}&${populates}`;
+
+      const response = await fetch(url);
+      const result = await response.json();
+
+      if (response.status !== 200) throw response;
+      return result.data[0];
+    } catch (error) {
+      throw error;
+    }
+  }
 }

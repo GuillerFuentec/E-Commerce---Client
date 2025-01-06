@@ -1,0 +1,36 @@
+.gallery {
+  display: flex;
+}
+
+.principal {
+  width: 49.8%;
+  padding-right: 10px;
+  > img {
+    border-radius: 2px;
+    height: 100%;
+    object-fit: cover;
+
+    &:hover {
+      opacity: 0.6;
+      cursor: pointer;
+    }
+  }
+}
+
+.grid {
+  width: 49.8%;
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 10px;
+
+  > div {
+    width: 50%;
+
+    > img {
+      &:hover {
+        opacity: 0.6;
+        cursor: pointer;
+      }
+    }
+  }
+}

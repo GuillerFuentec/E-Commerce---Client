@@ -5,13 +5,8 @@ import { Label } from "../Label";
 import { map } from "lodash";
 
 export function GamesGrid(props) {
-<<<<<<< HEAD
-  const { games } = props;
-
-=======
   const { games } = props;  
   
->>>>>>> 14a6c2b
   return (
     <div className={styles.gridGames}>
       {map(games, (game) => (
@@ -21,7 +16,7 @@ export function GamesGrid(props) {
           className={styles.game}
         >
           <div>
-            <img src={`${ENV.SERVER_HOST}${game.attributes.cover.data.attributes.url}`} />
+            <img src={`${ENV.SERVER_HOST}${game.attributes.cover.data[0].attributes.url}`} />
             {game.attributes.discount > 0 && (
               <Label.Discount className={styles.discount}>
                 {`-${game.attributes.discount}%`}
