@@ -13,7 +13,7 @@ export default function GamePage(props) {
       <BasicLayout>
         <Game.HeaderWallpaper image={wallpaper.data.attributes.url} />
 
-        <Game.Panel game={game.attributes} />
+        <Game.Panel game={game} />
 
         <Separator height={50} />
 

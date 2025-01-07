@@ -3,9 +3,7 @@ import { ENV } from "@/utils";
 import { FullModal } from "@/components/Shared";
 import { Image } from "semantic-ui-react";
 import { map } from "lodash";
-import Slider from "react-slick"; // Importación corregida
-import "slick-carousel/slick/slick.css"; // Estilos de slick
-import "slick-carousel/slick/slick-theme.css"; // Tema de slick
+import Slider from "react-slick";
 import styles from "./Gallery.module.scss";
 
 export function Gallery(props) {
@@ -16,17 +14,24 @@ export function Gallery(props) {
   const screenshotsClone = [...screenshots];
   const principalImg = screenshotsClone.shift();
 
-  // Configuración de Slider
   const settings = {
     dots: true,
+    dotsClass: styles.dots,
     infinite: true,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
+    arrows: false,
+    customPaging: function (index) {
+      return (
+        <Image src={`${ENV.SERVER_HOST}${screenshots[index].attributes.url}`} />
+      );
+    },
   };
 
   return (
     <>
+      {/* Big IMAGE */}
       <div className={styles.gallery}>
         <div className={styles.principal}>
           <Image
@@ -34,6 +39,7 @@ export function Gallery(props) {
             onClick={onOpenClose}
           />
         </div>
+        {/* IMAGE's Grid */}
         <div className={styles.grid}>
           {map(screenshotsClone, (screenshot) => (
             <div key={screenshot.id}>
@@ -45,7 +51,8 @@ export function Gallery(props) {
           ))}
         </div>
       </div>
-      <FullModal show={show} onClick={onOpenClose}>
+      {/* MODAL */}
+      <FullModal show={show} onOpenClose={onOpenClose}>
         <div className={styles.carouselContainer}>
           <Slider {...settings}>
             {map(screenshots, (screenshot) => (
