@@ -29,7 +29,6 @@ export function WishListIcon(props) {
     setHasItemWishList(response);
   };
 
-  console.log(hasItemWishList);
   const deleteWishList = async () => {
     try {
       await wishListCtrl.delete(hasItemWishList.id);
