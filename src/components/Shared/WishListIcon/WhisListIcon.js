@@ -8,7 +8,7 @@ import styles from "./wishListIcon.module.scss";
 const wishListCtrl = new WishList();
 
 export function WishListIcon(props) {
-  const { gameId, className } = props;
+  const { gameId, className, removeCallback } = props;
   const [hasItemWishList, setHasItemWishList] = useState(null);
   const { user } = useAuth();
 
@@ -29,12 +29,15 @@ export function WishListIcon(props) {
     setHasItemWishList(response);
   };
 
+  console.log(hasItemWishList);
   const deleteWishList = async () => {
     try {
       await wishListCtrl.delete(hasItemWishList.id);
       setHasItemWishList(false);
+
+      if (removeCallback) removeCallback();
     } catch (error) {
-      throw error;
+      console.error(error);
     }
   };
 

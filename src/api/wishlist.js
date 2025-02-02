@@ -64,4 +64,22 @@ export class WishList {
       throw error;
     }
   }
+
+  async getAll(userId) {
+    try {
+      const filters = `filters[user][id][$eq][0]=${userId}`;
+      const populate = `populate[0]=game&populate[1]=game.cover`;
+      const urlParams = `${filters}&${populate}`
+
+      const url = `${ENV.API_URL}/${ENV.ENDPOINTS.WISHLIST}?${urlParams}`;
+      
+      const response = await authFetch(url);
+      const result = await response.json()
+
+      if(response.status !== 200) throw result;
+      return result;
+    } catch (error) {
+      throw error;
+    }
+  }
 }
