@@ -83,7 +83,7 @@ export class Game {
       const filter = `filters[slug][$eq]=${slug}`;
       const populateWallpaper = `populate[0]=wallpaper&populate[1]=cover&populate[2]=screenshots&populate[3]=platform`;
       const populatePlatform = `populate[4]=platform.icon`;
-      const populates =`${populateWallpaper}&${populatePlatform}`;
+      const populates = `${populateWallpaper}&${populatePlatform}`;
 
       const url = `${ENV.API_URL}/${ENV.ENDPOINTS.GAME}?${filter}&${populates}`;
 
@@ -94,6 +94,22 @@ export class Game {
       return result.data[0];
     } catch (error) {
       throw error;
+    }
+  }
+
+  async getGameByID(gameID) {
+    try {
+      const populate = `populate[0]=cover&populate[1]=platform`;
+      const url = `${ENV.API_URL}/${ENV.ENDPOINTS.GAME}/${gameID}?${populate}`;
+
+      const response = await fetch(url);
+      const result = await response.json();
+
+      if (response.status !== 200) throw result;
+      return result;
+    } catch (error) {
+      console.error(`Error:`,error);
+      
     }
   }
 }

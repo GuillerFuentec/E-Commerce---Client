@@ -4,13 +4,11 @@ import { Icon, Image } from "semantic-ui-react";
 import { useRouter } from "next/router";
 import { map } from "lodash";
 import classNames from "classnames";
-import { number } from "yup";
 
 export function HeaderCart() {
   const {
     query: { step = 1 },
   } = useRouter();
-  console.log(step);
   const currentStep = step;
 
   const steps = [
