@@ -7,6 +7,12 @@ import classNames from "classnames";
 import { number } from "yup";
 
 export function HeaderCart() {
+  const {
+    query: { step = 1 },
+  } = useRouter();
+  console.log(step);
+  const currentStep = step;
+
   const steps = [
     { number: 1, title: "Cart" },
     { number: 2, title: "Payment" },
@@ -21,7 +27,13 @@ export function HeaderCart() {
       </div>
       <div className={styles.center}>
         {map(steps, (step) => (
-          <div key={step.number}>
+          <div
+            key={step.number}
+            className={classNames({
+              [styles.active]: step.number === Number(currentStep),
+              [styles.success]: step.number < Number(currentStep),
+            })}
+          >
             <span className={styles.number}>
               <Icon name="check" />
               {step.number}
@@ -32,7 +44,7 @@ export function HeaderCart() {
         ))}
       </div>
       <div className={styles.right}>
-        <Icon name="lock"/>
+        <Icon name="lock" />
         <div>
           <span>Secure Payment</span>
           <span>265bit SSL-Secure</span>
