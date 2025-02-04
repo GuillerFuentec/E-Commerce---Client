@@ -38,4 +38,20 @@ export class Cart {
       return JSON.parse(response);
     }
   }
+
+  changeQuantity(gameId, quantity) {
+    const games = this.getAll();
+    const objIndex = games.findIndex((game) => game.id === gameId);
+
+    if (objIndex >= 0) {
+      games[objIndex].quantity = quantity;
+      localStorage.setItem(ENV.CART, JSON.stringify(games));
+    }
+  }
+
+  deleteItem(gameId) {
+    const games = this.getAll();
+    const newGames = games.filter((game) => game.id !== gameId);
+    localStorage.setItem(ENV.CART, JSON.stringify(newGames));
+  }
 }

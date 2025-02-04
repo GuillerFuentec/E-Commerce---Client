@@ -7,7 +7,7 @@ import { useCart } from "@/hooks";
 
 export function Basket(props) {
   const { games } = props;
-  const { changeQuantityItems } = useCart();
+  const { changeQuantityItems, deleteItem } = useCart();
 
   const options = Array.from({ length: 6 }, (_, i) => {
     const value = i + 1;
@@ -35,7 +35,7 @@ export function Basket(props) {
                   <p>{game.attributes.title}</p>
                   <p>{game.attributes.platform.data.attributes.title}</p>
                 </div>
-                <Icon name="trash alternate online" link />
+                <Icon name="trash alternate online" link onClick={() => deleteItem(game.id)} />
               </div>
               <div className={styles.quantity}>
                 <Dropdown

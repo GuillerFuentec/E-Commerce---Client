@@ -20,12 +20,13 @@ export function CartProvider(props) {
   };
 
   const changeQuantityItems = (gameId, quantity) => {
-    console.log("Quantity", quantity);
-    console.log("GameId", gameId);
-    
-    
-    // cartCtrl.changeQuantity(gameId, quantity);
-    // refreshTotalCart();
+    cartCtrl.changeQuantity(gameId, quantity);
+    refreshTotalCart();
+  };
+
+  const deleteItem = (gameId) => {
+    cartCtrl.deleteItem(gameId);
+    refreshTotalCart();
   };
 
   const refreshTotalCart = () => {
@@ -37,7 +38,7 @@ export function CartProvider(props) {
     cart,
     addCart,
     total,
-    deleteItem: () => {},
+    deleteItem,
     deleteAllItems: () => {},
     changeQuantityItems,
   };
