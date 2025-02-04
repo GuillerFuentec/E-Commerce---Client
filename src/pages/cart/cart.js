@@ -14,6 +14,7 @@ export default function CartPage() {
   const currentStep = Number(step);
   const [games, setGames] = useState(null);
   const { cart } = useCart();
+
   useEffect(() => {
     (async () => {
       try {
