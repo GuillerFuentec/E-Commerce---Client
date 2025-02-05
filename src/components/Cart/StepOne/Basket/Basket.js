@@ -35,7 +35,7 @@ export function Basket(props) {
                   <p>{game.attributes.title}</p>
                   <p>{game.attributes.platform.data.attributes.title}</p>
                 </div>
-                <Icon name="trash alternate online" link onClick={() => deleteItem(game.id)} />
+                <Icon name="trash alternate outline" link onClick={() => deleteItem(game.id)} />
               </div>
               <div className={styles.quantity}>
                 <Dropdown

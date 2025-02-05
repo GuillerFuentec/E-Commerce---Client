@@ -33,9 +33,35 @@ export function Resume(props) {
     setTotal(total);
   }, [games]);
 
+  const goToStepTwo = () => {
+    router.replace({ query: { ...router.query, step: 2 } });
+  };
+  if (!total) return null;
+
   return (
-    <div>
+    <div className={styles.resume}>
       <h2>Resume</h2>
+
+      <div className={styles.block}>
+        <div className={styles.prices}>
+          <div>
+            <span>Price</span>
+            <span>${total.original.toFixed(2)}</span>
+          </div>
+          <div className={styles.discount}>
+            <span>Discount</span>
+            <span>{total.discount.toFixed(2)}</span>
+          </div>
+          <div>
+            <span>Total</span>
+            <span>${total.price.toFixed(2)}</span>
+          </div>
+        </div>
+        <Button primary fluid onClick={goToStepTwo}>
+          Make Payment
+        </Button>
+        <Link href="/">Keep Shopping</Link>
+      </div>
     </div>
   );
 }

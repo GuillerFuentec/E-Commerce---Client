@@ -31,9 +31,10 @@ export class Address {
 
   async getAddress(userID) {
     try {
+
       const filters = `filters[user][id][$eq]=${userID}`;
       const url = `${ENV.API_URL}/${ENV.ENDPOINTS.ADDRESS}?${filters}`;
-
+      
       const response = await authFetch(url);
       const result = await response.json();
 
