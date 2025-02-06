@@ -4,8 +4,9 @@ import { Elements } from "@stripe/react-stripe-js";
 import { ENV } from "@/utils";
 import { useState } from "react";
 import { Payment } from "./Payment";
-import { Separator } from "@/components/Shared";
 import { Addresses } from "./Addresses";
+import { Resume } from "./Resume";
+import { Separator } from "@/components/Shared";
 
 const stripeAsync = loadStripe(ENV.STRIPE_TOKEN);
 
@@ -25,7 +26,7 @@ export function StepTwo(props) {
           {addressesSelected && <Payment />}
         </div>
         <div className={styles.right}>
-          <p>Resume</p>
+          <Resume addressesSelected={addressesSelected} games={games} />
         </div>
       </div>
     </Elements>
