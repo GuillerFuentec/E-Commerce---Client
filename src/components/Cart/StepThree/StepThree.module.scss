@@ -1,0 +1,20 @@
+@import "~/src/scss/index.scss";
+
+.StepThree {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    > i {
+        font-size: 6rem;
+        color: $succes;
+    }
+
+    > h2 {
+        margin-bottom: 2rem;
+    }
+
+    > a {
+        width: 27rem;
+    }
+}
