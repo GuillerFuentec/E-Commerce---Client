@@ -2,10 +2,12 @@ import Link from "next/link";
 import { Joinlayout } from "@/layouts/JoinLayout/join-layout";
 import {LoginForm} from "@/components/Auth"
 import styles from "./sign-in.module.scss";
+import { Seo } from "@/components/Shared";
 
 export default function SignInPage() {
   return (
     <>
+    <Seo title="Gaming | Sing In"/>
       <Joinlayout>
         <div className={styles.signIn}>
           <h3>Iniciar Sesion</h3>

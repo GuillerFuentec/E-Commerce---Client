@@ -3,7 +3,14 @@ import { useAuth } from "@/hooks";
 import { useRouter } from "next/router";
 import { Tab } from "semantic-ui-react";
 import { BasicLayout } from "@/layouts";
-import { Info, Setting, Address, Wishlist, Orders } from "@/components/Account";
+import {
+  Info,
+  Setting,
+  Address,
+  Wishlist,
+  Orders,
+  Seo,
+} from "@/components/Account";
 import { Separator } from "@/components/Shared";
 import styles from "./account.module.scss";
 
@@ -72,14 +79,17 @@ export default function AccountPage() {
   ];
 
   return (
-    <BasicLayout isContainer relative>
-      <Info />
+    <>
+    <Seo title="Account"/>
+      <BasicLayout isContainer relative>
+        <Info />
 
-      <Tab
-        menu={{ secondary: true, pointing: true }}
-        panes={panes}
-        className={styles.tabs}
-      />
-    </BasicLayout>
+        <Tab
+          menu={{ secondary: true, pointing: true }}
+          panes={panes}
+          className={styles.tabs}
+        />
+      </BasicLayout>
+    </>
   );
 }

@@ -1,6 +1,6 @@
 import { Container } from "semantic-ui-react";
 import { BasicLayout } from "@/layouts";
-import { Separator, BarTrust, BannerAd } from "@/components/Shared";
+import { Separator, BarTrust, BannerAd, Seo } from "@/components/Shared";
 import { Home } from "@/components/Home";
 
 const platformID = {
@@ -13,6 +13,7 @@ const platformID = {
 export default function HomePage() {
   return (
     <>
+      <Seo />
       {/* SEO */}
       <BasicLayout>
         {/* HERO Section */}

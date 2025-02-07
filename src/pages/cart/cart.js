@@ -4,6 +4,7 @@ import { CartLayout } from "@/layouts";
 import { Game } from "@/api";
 import { useRouter } from "next/router";
 import { Cart } from "@/components/Cart";
+import { Seo } from "@/components/Shared";
 
 const gameCtrl = new Game();
 
@@ -31,10 +32,13 @@ export default function CartPage() {
   }, [cart]);
 
   return (
+    <>
+    <Seo title="Gaming | Cart"/>
     <CartLayout>
       {currentStep === 1 && <Cart.StepOne games={games} />}
       {currentStep === 2 && <Cart.StepTwo games={games} />}
       {currentStep === 3 && <Cart.StepThree />}
     </CartLayout>
+    </>
   );
 }

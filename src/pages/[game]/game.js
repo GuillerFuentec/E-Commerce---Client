@@ -1,15 +1,18 @@
 import { Game } from "@/components/Game";
 import { BasicLayout } from "@/layouts";
-import { Separator } from "@/components/Shared";
+import { Separator, Seo } from "@/components/Shared";
 
 export default function GamePage(props) {
   const { game } = props;
-  
 
   const wallpaper = game.attributes.wallpaper;
 
   return (
     <>
+      <Seo
+        title={game.attributes.title}
+        description={game.attributes.summary}
+      />
       <BasicLayout>
         <Game.HeaderWallpaper image={wallpaper.data.attributes.url} />
 
@@ -17,7 +20,10 @@ export default function GamePage(props) {
 
         <Separator height={50} />
 
-        <Game.Media trailer={game.attributes.trailer} screenshots={game.attributes.screenshots} />
+        <Game.Media
+          trailer={game.attributes.trailer}
+          screenshots={game.attributes.screenshots}
+        />
 
         <Separator height={50} />
 
