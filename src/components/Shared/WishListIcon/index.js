@@ -1,1 +1,1 @@
-export * from "./whisListIcon";
+export * from "./WhisListIcon";
