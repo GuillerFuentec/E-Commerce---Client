@@ -23,7 +23,7 @@ export function Panel(props) {
 
   const addCartWrapper = () => {
     if (!user) {
-      return router.replace("/login");
+      return router.replace("/join/sign-in");
     }
     setLoading(true);    
     addCart(game.id);

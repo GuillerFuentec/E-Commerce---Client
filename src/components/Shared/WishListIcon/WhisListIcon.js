@@ -4,10 +4,12 @@ import { WishList } from "@/api";
 import classNames from "classnames";
 import { useAuth } from "@/hooks";
 import styles from "./wishListIcon.module.scss";
+import { useRouter } from "next/router";
 
 const wishListCtrl = new WishList();
 
 export function WishListIcon(props) {
+  const router = useRouter();
   const { gameId, className, removeCallback } = props;
   const [hasItemWishList, setHasItemWishList] = useState(null);
   const { user } = useAuth();
@@ -25,6 +27,9 @@ export function WishListIcon(props) {
   }, [gameId]);
 
   const addWishList = async () => {
+    if (!user) {
+      return router.replace("/join/sign-in");
+    }
     const response = await wishListCtrl.add(user.id, gameId);
     setHasItemWishList(response);
   };
