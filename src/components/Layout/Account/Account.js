@@ -9,12 +9,13 @@ export function Account() {
   const { total } = useCart();
   const router = useRouter();
 
-  const goToLogin = () => router.replace("/join/sign-in");
-  const goToAccount = () => router.replace("/account");
+  const goToLogin = () => router.push("/join/sign-in");
+  const goToAccount = () => router.push("/account");
 
   const goToCart = () => {
-    if (!user) goToLogin;
-    else router.push("/cart");
+    if (!user) {
+      return router.replace("/join/sign-in");
+    }
   };
 
   return (
