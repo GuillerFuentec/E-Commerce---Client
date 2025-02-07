@@ -1,12 +1,16 @@
 import styles from "./Panel.module.scss";
 import { useState } from "react";
 import { useCart } from "@/hooks";
+import { useRouter } from "next/router";
 import { WishListIcon } from "@/components/Shared";
+import { useAuth } from "@/hooks";
 import { ENV } from "@/utils";
 import { Button, Container, Image, Icon } from "semantic-ui-react";
 import { fn } from "@/utils";
 
 export function Panel(props) {
+  const {user} = useAuth();
+  const router = useRouter();
   const { game } = props;
   const [loading, setLoading] = useState(false);
   const { addCart } = useCart();
@@ -18,6 +22,9 @@ export function Panel(props) {
   const platform = game.attributes.platform.data;
 
   const addCartWrapper = () => {
+    if (!user) {
+      return router.replace("/login");
+    }
     setLoading(true);    
     addCart(game.id);
 
