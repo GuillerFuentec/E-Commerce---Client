@@ -1,9 +1,11 @@
 import { Button, Container, Image } from "semantic-ui-react";
 import Link from "next/link";
+import { useAuth } from "@/hooks";
 import styles from "./BannerAd.module.scss";
 
 export function BannerAd(props) {
-  const { title, subtitle, btnTitle, btnLink, img } = props;
+  const { user } = useAuth();
+  const { title, subtitle, btnTitle, img } = props;
   return (
     <div className={styles.container}>
       <Container className={styles.containerImage}>
@@ -14,7 +16,7 @@ export function BannerAd(props) {
         <Container>
           <h2>{title}</h2>
           <h3>{subtitle}</h3>
-          <Button as={Link} href={btnLink} primary>
+          <Button as={Link} href={user ? "/" : "/join/sign-up"} primary>
             {btnTitle}
           </Button>
         </Container>

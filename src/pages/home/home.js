@@ -39,7 +39,6 @@ export default function HomePage() {
           title="Sign up and get better offers"
           subtitle="Buy with other games and choose you own"
           btnTitle="Sign up now"
-          btnLink="/join/sign-up"
           img="/img/img01.png"
         />
         <Separator height={100} />
