@@ -7,23 +7,21 @@ import {
   Info,
   Setting,
   Address,
-  Wishlist,
   Orders,
-  Seo,
+  Wishlist,
 } from "@/components/Account";
-import { Separator } from "@/components/Shared";
+import { Separator, Seo } from "@/components/Shared";
 import styles from "./account.module.scss";
 
 export default function AccountPage() {
   const router = useRouter();
   const { user, logout } = useAuth();
-  const [reload, setReload] = useState(false);
+  const [reload, setReload] = useState(false);  
 
   const onReload = () => setReload((prevState) => !prevState);
 
   if (!user) {
-    router.push("/");
-    return null;
+    return router.replace("/");
   }
 
   const panes = [
@@ -37,7 +35,7 @@ export default function AccountPage() {
       ),
     },
     {
-      menuItem: "Whishlist",
+      menuItem: "Wishlist",
       render: () => (
         <Tab.Pane attached={false}>
           <Wishlist />
@@ -80,7 +78,7 @@ export default function AccountPage() {
 
   return (
     <>
-    <Seo title="Account"/>
+      <Seo title="Account" />
       <BasicLayout isContainer relative>
         <Info />
 
