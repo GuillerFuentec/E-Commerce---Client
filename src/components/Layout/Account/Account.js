@@ -15,6 +15,8 @@ export function Account() {
   const goToCart = () => {
     if (!user) {
       return router.replace("/join/sign-in");
+    } else {
+      return router.push("/cart");
     }
   };
 

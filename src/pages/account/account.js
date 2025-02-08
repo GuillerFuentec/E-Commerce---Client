@@ -17,13 +17,14 @@ export default function AccountPage() {
   const router = useRouter();
   const { user, logout } = useAuth();
   const [reload, setReload] = useState(false);  
-
-  const onReload = () => setReload((prevState) => !prevState);
-
+  
   if (!user) {
-    return router.replace("/");
+    router.push("/");
+    return null;
   }
-
+  
+  const onReload = () => setReload((prevState) => !prevState);
+  
   const panes = [
     {
       menuItem: "Purchases",
